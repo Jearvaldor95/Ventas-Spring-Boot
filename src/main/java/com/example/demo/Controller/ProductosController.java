@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Modelo.Categorias;
 import com.example.demo.Modelo.Productos;
@@ -41,8 +42,11 @@ public class ProductosController {
 		return "Productos/agregar_productos";
 	}
 	@PostMapping("/guardar")
-	public String GuardarProducto(@Validated Productos p, Model model) {
+	public String GuardarProducto(@Validated Productos p, Model model, RedirectAttributes redirectAtrrs) {
 		productoServices.save(p);
+		redirectAtrrs
+		.addFlashAttribute("mensaje", "Producto guardado corectamente")
+		.addFlashAttribute("clase", "success");
 		return "Productos/agregar_productos";
 	}
 	

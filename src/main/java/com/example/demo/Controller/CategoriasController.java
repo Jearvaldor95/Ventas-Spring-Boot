@@ -34,33 +34,40 @@ public class CategoriasController {
 	}
 	
 	@PostMapping("/guardar")
-	public String GuardarCategoria(@Validated Categorias c, Model model, RedirectAttributes redirect) {
+	public String GuardarCategoria(@Validated Categorias c, Model model, RedirectAttributes redirectAttrs) {
 		//guardar la categoria
 		categoriasServices.save(c);
-		redirect
+		redirectAttrs
 		.addFlashAttribute("mensaje", "Categoria guardada correctamente")
 		.addFlashAttribute("clase", "success");
 		//listar categorias
 		List<Categorias>categoria=categoriasServices.Listar();
 		model.addAttribute("categoria", categoria);
 		
-		return "Categoria/addcategoria";
+		return "redirect:/categoria/mostrar";
 	}
 	
 	@GetMapping("/editar/{id}")
-	public String EditarCategoria(@PathVariable int id, Model model) {
+	public String MostrarCategoriaFormulario(@PathVariable int id, Model model) {
 		model.addAttribute("categorias", categoriasServices.ListaId(id));
 		return "Categoria/addcategoria";
 	}
 	
-	public String ActualizarCategoria(@Validated Categorias c, Model model) {
+	@PostMapping("/editar/{id}")
+	public String ActualizarCategoria(@Validated Categorias c, Model model, RedirectAttributes redirectAttrs) {
 		categoriasServices.save(c);
+		redirectAttrs
+		.addFlashAttribute("mensaje", "Categoria editada correctamente")
+		.addFlashAttribute("clase", "info");
 		return "redirect:/categoria/mostrar";
 	}
 	
 	@GetMapping("/eliminar/{id}")
-	public String EliminarCategoria(@PathVariable int id, Model model) {
+	public String EliminarCategoria(@PathVariable int id, Model model, RedirectAttributes redirectAtrrs) {
 		categoriasServices.deleted(id);
+		redirectAtrrs
+		.addFlashAttribute("mensaje","Categoria eliminada corectamente")
+		.addFlashAttribute("clase", "warning");
 		return "redirect:/categoria/mostrar";
 	}
 	
