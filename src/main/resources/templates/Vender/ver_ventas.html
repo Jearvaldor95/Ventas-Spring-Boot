@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="venta : ${ventas}">
+                <tr th:each="venta : ${venta}">
                 <td th:text="${venta.idventa}"></td>
                     <td th:text="${venta.fechaYHora}"></td>
                      <td th:text="${venta.TotalVenta}"></td>
@@ -46,7 +46,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="producto : ${venta.productosventas}">
-                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.productos.nombre}"></td>
                                 <td th:text="${producto.cantidad}"></td>
                                 <td th:text="${producto.precio}"></td>
                                  <td th:text="${producto.total}"></td>

@@ -163,8 +163,8 @@ public class VentasController {
 	    
 	    @GetMapping(value ="/ventas")
 	    public String mostrarVentas(Model model) {
-	    	List<Ventas>ventas=ventaServices.listar();
-			model.addAttribute("ventas", ventas);
+	    	List<Ventas>venta=ventaServices.listar();
+			model.addAttribute("venta", venta);
 	        return "vender/ver_ventas";
 	    }
 }
