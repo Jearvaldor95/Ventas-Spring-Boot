@@ -1,7 +1,6 @@
 package com.example.demo.Modelo;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -73,22 +72,9 @@ public class Productos {
 	public Productos(int id,String nombre, int precio, int stock) { 
 		this.id = id;
 		this.nombre = nombre;
-		//this.referencia = referencia;
 		this.precio = precio;
-		//this.peso = peso;
-		//this.categoria = categoria;
 		this.stock = stock;
-		//this.fechaCreacion = fechaCreacion;
-	}/*
-	public Productos(String nombre,String referencia, int precio, int peso, String categoria, int stock) { 
-		this.nombre = nombre;
-		this.referencia = referencia;
-		this.precio = precio;
-		this.peso = peso;
-		this.categoria = categoria;
-		this.stock = stock;
-		//this.fechaCreacion = new Date();
-	}*/
+	}
 	
 	public Productos(String nombre, int precio, int stock) {
 		this.nombre=nombre;

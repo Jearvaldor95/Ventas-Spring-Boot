@@ -1,6 +1,5 @@
 package com.example.demo.Modelo;
 
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

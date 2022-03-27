@@ -1,6 +1,5 @@
 package com.example.demo.Modelo;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -51,7 +50,6 @@ public class Ventas {
 	}
 
 	public float getTotalVenta() {
-		  TotalVenta = 0;
 	        
 	        return TotalVenta;
 	}
