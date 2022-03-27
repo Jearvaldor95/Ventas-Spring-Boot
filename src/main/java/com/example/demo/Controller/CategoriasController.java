@@ -30,7 +30,7 @@ public class CategoriasController {
 		//cargar la lista decategorias
 		List<Categorias>categoria=categoriasServices.Listar();
 		model.addAttribute("categoria", categoria);
-		return "addcategoria";
+		return "Categoria/addcategoria";
 	}
 	
 	@PostMapping("/guardar")
@@ -44,13 +44,13 @@ public class CategoriasController {
 		List<Categorias>categoria=categoriasServices.Listar();
 		model.addAttribute("categoria", categoria);
 		
-		return "addcategoria";
+		return "Categoria/addcategoria";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String EditarCategoria(@PathVariable int id, Model model) {
 		model.addAttribute("categorias", categoriasServices.ListaId(id));
-		return "addcategoria";
+		return "Categoria/addcategoria";
 	}
 	
 	public String ActualizarCategoria(@Validated Categorias c, Model model) {

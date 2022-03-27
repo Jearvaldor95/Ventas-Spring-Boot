@@ -38,12 +38,12 @@ public class ProductosController {
 		//listar las categorias para seleccionar en el formulario 
 		List<Categorias>ListarCategoria=categoriaServices.Listar();
 		model.addAttribute("categoria", ListarCategoria);
-		return "agregar_productos";
+		return "Productos/agregar_productos";
 	}
 	@PostMapping("/guardar")
 	public String GuardarProducto(@Validated Productos p, Model model) {
 		productoServices.save(p);
-		return "agregar_productos";
+		return "Productos/agregar_productos";
 	}
 	
 	//para pasar los datos al formulario de actualizar
@@ -53,7 +53,7 @@ public class ProductosController {
 		//listar las categorias para seleccionar en el formulario 
 				List<Categorias>ListarCategoria=categoriaServices.Listar();
 				model.addAttribute("categoria", ListarCategoria);
-		return "editar_producto";
+		return "Productos/editar_producto";
 	}
 	
 	@PostMapping("/editar/{id}")
