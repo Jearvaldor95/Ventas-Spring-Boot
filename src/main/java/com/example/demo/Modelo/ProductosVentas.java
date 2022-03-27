@@ -19,7 +19,6 @@ public class ProductosVentas {
 	@Column(name="id_pv")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  int id;
-	private String nombre;
 	private int precio;
 	private int cantidad;
 	private int total;
@@ -32,10 +31,9 @@ public class ProductosVentas {
     @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=true)
     private Productos productos;
     
-	public ProductosVentas(int id,String nombre, int precio, int cantidad,int total,Productos productos,Ventas venta) {
+	public ProductosVentas(int id, int precio, int cantidad,int total,Productos productos,Ventas venta) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.total = total;
@@ -62,16 +60,6 @@ public class ProductosVentas {
 
 	public void setTotal(int total) {
 		this.total = total;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 
