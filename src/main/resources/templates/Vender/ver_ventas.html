@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Prueba Crud Spring Boot</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="cabecera/navegacion :: navegacion"></nav>
+<main>
+    <div class="col-12">
+        <h2>Ventas</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <a class="btn btn-success mb-2" th:href="@{/vender/}">Agregar</a>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Total Venta</th>
+                    <th>Productos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="venta : ${ventas}">
+                <td th:text="${venta.idventa}"></td>
+                    <td th:text="${venta.fechaYHora}"></td>
+                     <td th:text="${venta.TotalVenta}"></td>
+                    <td>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad vendida</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="producto : ${venta.productosventas}">
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.cantidad}"></td>
+                                <td th:text="${producto.precio}"></td>
+                                 <td th:text="${producto.total}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+</html>

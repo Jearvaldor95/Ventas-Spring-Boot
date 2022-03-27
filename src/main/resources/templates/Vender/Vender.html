@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Prueba Crud Spring Boot</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<nav th:replace="Cabecera/navegacion :: navegacion"></nav>
+	<main>
+		<div class="col-12">
+			<h2>Vender</h2>
+			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+			</div>
+			<form th:object="${producto}" th:action="@{/vender/agregar}"
+				method="post">
+				<div class="form-group">
+					<label for="codigo">ID del producto</label> <input autofocus
+						autocomplete="off" th:field="*{id}" id="codigo"
+						placeholder="Escribe el ID del producto y presiona Enter"
+						type="number" class="form-control"
+						th:classappend="${#fields.hasErrors('id')} ? 'is-invalid' : ''"onfocus="PasarValorVenta();" >
+					<div class="invalid-feedback" th:errors="*{id}"></div>
+
+				</div>
+				<script>
+					function PasarValorVenta(){
+						document.getElementById("obtenerTotalVenta").value=document.getElementById("pasarTotalVenta").value;
+					}
+				</script>
+
+			</form>
+			<form class="mb-2" th:object="${ventas}"
+				th:action="@{/vender/terminar}" method="post">
+				<input th:field="*{fechaYHora}" type="datetime"> 
+				<input th:field="*{TotalVenta}" id="obtenerTotalVenta" type="hidden">
+				<input id="pasarTotalVenta" th:value="${total}" type="hidden">
+				<button type="submit" class="btn btn-success">
+					Terminar&nbsp;<i class="fa fa-check"></i>
+				</button>
+				<a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancelar
+					venta&nbsp;<i class="fa fa-trash"></i>
+				</a>
+			</form>
+			<h1 th:text="${'Total: ' + total}"></h1>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Total</th>
+							<th>Quitar de lista</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="producto, iterador : ${session.carrito}">
+							<td th:text="${producto.id}"></td>
+							<td th:text="${producto.nombre}"></td>
+							<td th:text="${producto.precio}"></td>
+							<td th:text="${producto.cantidad}"></td>
+							<td th:text="${producto.total}"></td>
+							<td>
+								<form th:action="@{/vender/quitar/} + ${iterador.index}"
+									method="post">
+									<button type="submit" class="btn btn-danger">
+										<i class="fa fa-trash"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

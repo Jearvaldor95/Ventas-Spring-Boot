@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Prueba Crud Spring Boot</title>
+ <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+ <link th:href="@{/css/fa.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="cabecera/navegacion :: navegacion"></nav>
+	<div class="container mt-4 table-striped">
+	<a th:href="@{/producto/nuevo}" class="btn btn-primary">Nuevo</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>NOMBRE</td>
+					<td>REFERENCIA</td>
+					<td>PRECIO</td>
+					<td>PESO</td>
+					<td>CATEGORIA</td>
+					<td>STOCK</td>
+					<td>FECHA CREACION</td>
+					<td>EDITAR</td>
+					<td>ELIMINAR</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="productos:${productos}">
+					<td th:text="${productos.id}"></td>
+					<td th:text="${productos.nombre}"></td>
+					<td th:text="${productos.referencia}"></td>
+					<td th:text="${productos.precio}"></td>
+					<td th:text="${productos.peso}"></td>
+					<td th:text="${productos.categorias.nombre}"></td>
+					<td th:text="${productos.stock}"></td>
+					<td th:text="${productos.fechaCreacion}"></td>
+					
+					<td>
+					<a th:href="@{/producto/editar/}+${productos.id}" class="btn btn-warning">Editar</a>
+					<!-- eliminar directamente sin preguntar sin funcion-->
+					</td>
+					<td>
+					<a th:href="@{/producto/eliminar/}+${productos.id}" class="btn btn-danger">Eliminar</a>
+					<!-- eliminar con la funccion -->
+				     <!-- <a th:onclick="eliminar([[${productos.id}]])" class="btn btn-danger">Eliminar</a> -->
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+</body>
+</html>
