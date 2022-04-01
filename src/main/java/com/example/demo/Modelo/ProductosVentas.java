@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -26,8 +27,8 @@ public class ProductosVentas {
     @JoinColumn(name = "idventa",nullable= false,insertable=true, updatable=true)
     private Ventas venta;
     
-    @ManyToOne
-    @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=true)
+    @OneToOne
+    @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=false)
     private Productos productos;
     
 	public ProductosVentas(int id, int precio, int cantidad,int total,Productos productos,Ventas venta) {

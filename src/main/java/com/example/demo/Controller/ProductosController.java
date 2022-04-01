@@ -47,7 +47,7 @@ public class ProductosController {
 		redirectAtrrs
 		.addFlashAttribute("mensaje", "Producto guardado corectamente")
 		.addFlashAttribute("clase", "success");
-		return "Productos/agregar_productos";
+		return "redirect:/producto/nuevo";
 	}
 	
 	//para pasar los datos al formulario de actualizar
@@ -61,14 +61,19 @@ public class ProductosController {
 	}
 	
 	@PostMapping("/editar/{id}")
-	public String ActualizarProducto(@Validated Productos p) {
+	public String ActualizarProducto(@Validated Productos p, RedirectAttributes redirectAttrs) {
 		productoServices.save(p);
+		redirectAttrs.addFlashAttribute("mensaje", "Producto editado correctamente")
+		.addFlashAttribute("clase", "info");
 		return "redirect:/producto/listar";
 	}
 	
 	@GetMapping("/eliminar/{id}")
-	public String EliminarProducto(@PathVariable int id, Model model) {
+	public String EliminarProducto(@PathVariable int id, Model model, RedirectAttributes reditecAttrs) {
 		productoServices.delete(id);
+		reditecAttrs
+		.addFlashAttribute("mensaje", "Producto eliminado correctamente")
+		.addFlashAttribute("clase", "warning");
 		return "redirect:/producto/listar";
 	}
 

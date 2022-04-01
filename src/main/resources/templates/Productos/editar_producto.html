@@ -9,7 +9,7 @@
 <link th:href="@{/css/fa.min.css}" rel="stylesheet">
 </head>
 <body>
-<nav th:replace="cabecera/navegacion :: navegacion"></nav>
+<nav th:replace="Navegacion/navegacion :: navegacion"></nav>
 	<div class="container mt-4">
 		<div class="col-sm-12">
 			<form th:action="@{/producto/editar/} + ${productos.id}" th:object=${productos} method="POST">

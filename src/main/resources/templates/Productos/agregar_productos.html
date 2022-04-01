@@ -9,7 +9,7 @@
 <link th:href="@{/css/fa.min.css}" rel="stylesheet">
 </head>
 <body>
-<nav th:replace="cabecera/navegacion :: navegacion"></nav>
+<nav th:replace="Navegacion/navegacion :: navegacion"></nav>
 	<div class="container mt-4">
 	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
@@ -59,6 +59,7 @@
 					</div>
 					<div class="card-footer">
 						<input type="submit" value="Guardar" class="btn btn-success">
+						<a th:href="@{/producto/listar}" class="btn btn-dark">Ver Productos</a>
 					</div>
 				</div>
 			</form>

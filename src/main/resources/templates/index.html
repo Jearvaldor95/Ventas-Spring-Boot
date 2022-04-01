@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Prueba Crud Spring Boot</title>
- <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
- <link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
 </head>
 <body>
-<nav th:replace="cabecera/navegacion :: navegacion"></nav>
+	<nav th:replace="Navegacion/navegacion :: navegacion"></nav>
+
 	<div class="container mt-4 table-striped">
-	<a th:href="@{/producto/nuevo}" class="btn btn-primary">Nuevo</a>
+		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+			th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+		</div>
+		<h2>Lista de productos</h2>
+		<a th:href="@{/producto/nuevo}" class="btn btn-primary">Nuevo</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -36,22 +43,20 @@
 					<td th:text="${productos.categorias.nombre}"></td>
 					<td th:text="${productos.stock}"></td>
 					<td th:text="${productos.fechaCreacion}"></td>
-					
-					<td>
-					<a th:href="@{/producto/editar/}+${productos.id}" class="btn btn-warning">Editar</a>
-					<!-- eliminar directamente sin preguntar sin funcion-->
+
+					<td><a th:href="@{/producto/editar/}+${productos.id}"
+						class="btn btn-warning">Editar</a> <!-- eliminar directamente sin preguntar sin funcion-->
 					</td>
-					<td>
-					<a th:href="@{/producto/eliminar/}+${productos.id}" class="btn btn-danger">Eliminar</a>
-					<!-- eliminar con la funccion -->
-				     <!-- <a th:onclick="eliminar([[${productos.id}]])" class="btn btn-danger">Eliminar</a> -->
+					<td><a th:href="@{/producto/eliminar/}+${productos.id}"
+						class="btn btn-danger">Eliminar</a> <!-- eliminar con la funccion -->
+						<!-- <a th:onclick="eliminar([[${productos.id}]])" class="btn btn-danger">Eliminar</a> -->
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 </body>
