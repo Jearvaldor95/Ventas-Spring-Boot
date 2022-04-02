@@ -84,7 +84,7 @@ public class VentasController {
 	            // Lo guardamos con la existencia ya restada
 	            productoServices.save(p);
 	            // Creamos un nuevo producto que será el que se guarda junto con la venta
-	            ProductosVentas productoVendido = new ProductosVentas(productoParaVender.getId(),productoParaVender.getPrecio(),productoParaVender.getCantidad(),productoParaVender.getTotal(),p,v);
+	            ProductosVentas productoVendido = new ProductosVentas(productoParaVender.getPrecio(),productoParaVender.getCantidad(),productoParaVender.getTotal(),p,v);
 	            // Y lo guardamos
 	            productosVendidoServices.save(productoVendido);
 	        }

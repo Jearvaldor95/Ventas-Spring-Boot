@@ -2,6 +2,7 @@ package com.example.demo.Modelo;
 
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,25 +16,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "productos_ventas")
 public class ProductosVentas {
-	@Id
-	@Column(name="id_pv")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private  int id;
+	
 	private int precio;
 	private int cantidad;
 	private int total;
+	
 	
     @ManyToOne
     @JoinColumn(name = "idventa",nullable= false,insertable=true, updatable=true)
     private Ventas venta;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=false)
     private Productos productos;
     
-	public ProductosVentas(int id, int precio, int cantidad,int total,Productos productos,Ventas venta) {
+	public ProductosVentas(int precio, int cantidad,int total,Productos productos,Ventas venta) {
 		super();
-		this.id = id;
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.total = total;
@@ -46,12 +44,7 @@ public class ProductosVentas {
 		
 	}
 	 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id=id;
-	}
+	
 
 	public int getTotal() {
 	        return this.cantidad * this.precio;
