@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Prueba Crud Spring Boot</title>
@@ -23,8 +23,8 @@
 				<tr>
 					<td>ID</td>
 					<td>NOMBRE</td>
-					<td>REFERENCIA</td>
-					<td>PRECIO</td>
+					<td>PRECIO COMPRA</td>
+					<td>PRECIO VENTA</td>
 					<td>PESO</td>
 					<td>CATEGORIA</td>
 					<td>STOCK</td>
@@ -37,8 +37,8 @@
 				<tr th:each="productos:${productos}">
 					<td th:text="${productos.id}"></td>
 					<td th:text="${productos.nombre}"></td>
-					<td th:text="${productos.referencia}"></td>
-					<td th:text="${productos.precio}"></td>
+					<td th:text="${productos.precio_compra}"></td>
+					<td th:text="${productos.precio_venta}"></td>
 					<td th:text="${productos.peso}"></td>
 					<td th:text="${productos.categorias.nombre}"></td>
 					<td th:text="${productos.stock}"></td>

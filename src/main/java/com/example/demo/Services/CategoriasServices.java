@@ -10,7 +10,7 @@ public interface CategoriasServices {
     //Categorias getCategoria(int id);
 	public List<Categorias>Listar();
 	public Optional<Categorias>ListaId(int id);
-	Categorias save(Categorias id);
+	public int save(Categorias id);
 	void deleted(int id);
 
 }

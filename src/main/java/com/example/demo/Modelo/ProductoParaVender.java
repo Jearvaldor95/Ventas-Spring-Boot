@@ -5,8 +5,8 @@ public class ProductoParaVender extends Productos {
 	 private int cantidad;
 
 
-	    public ProductoParaVender(int id,String nombre, int precio, int stock, int cantidad) {
-	        super(id,nombre, precio, stock);
+	    public ProductoParaVender(int id,String nombre, int precio_compra, int precio_venta, int stock, int cantidad) {
+	        super(id,nombre, precio_compra,precio_venta, stock);
 	        this.cantidad = cantidad;
 	    }
 
@@ -21,7 +21,7 @@ public class ProductoParaVender extends Productos {
 	    }
 
 	    public int getTotal() {
-	        return this.getPrecio() * this.cantidad;
+	        return this.getPrecio_venta() * this.cantidad;
 	    }
 
 }

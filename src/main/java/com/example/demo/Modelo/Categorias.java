@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name= "categorias")
@@ -19,6 +20,8 @@ public class Categorias {
 	@Column(name="idcategoria")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@NotNull(message = "Debes especificar el nombre")
 	private String nombre;
 	
 	@OneToMany(mappedBy = "categorias", cascade=CascadeType.ALL)

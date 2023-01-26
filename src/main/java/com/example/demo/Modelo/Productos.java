@@ -1,7 +1,7 @@
 package com.example.demo.Modelo;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,22 +33,21 @@ public class Productos {
 	private int id;
 
 	@NotNull(message = "Debes especificar el nombre")
-	@Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
 	private String nombre;
 
-	@NotNull(message = "Debes especificar la referencia")
-	@Size(min = 1, max = 100, message = "lareferencia debe medir entre 1 y 50")
-	private String referencia;
-
-	@NotNull(message = "Debes especificar el precio")
+	@NotNull(message = "Debes especificar el precio compra")
 	@Min(value = 0, message = "El precio mínimo es 0")
-	private int precio;
+	private int precio_compra;
+
+	@NotNull(message = "Debes especificar el precio venta")
+	@Min(value = 0, message = "El precio mínimo es 0")
+	private int precio_venta;
 
 	@NotNull(message = "Debes especificar el peso")
-	@Min(value = 0, message = "El precio mínimo es 0")
+	@Min(value = 0, message = "El peso mínimo es 0")
 	private int peso;
 
-	@NotNull(message = "Debes especificar la categoria")
+	@NotNull(message = "Debes seleccionar la categoria")
 	private int idcategoria;
 
 	@NotNull(message = "Debes especificar la existencia")
@@ -67,18 +66,21 @@ public class Productos {
 	
 	
 	@OneToMany(mappedBy = "productos", cascade=CascadeType.ALL)
-    private Set<ProductosVentas> productosventas;
+    private List<ProductosVentas> productosventas;
+	
 
-	public Productos(int id,String nombre, int precio, int stock) { 
+	public Productos(int id,String nombre, int precio_compra,int precio_venta, int stock) { 
 		this.id = id;
 		this.nombre = nombre;
-		this.precio = precio;
+		this.precio_compra = precio_compra;
+		this.precio_venta = precio_venta;
 		this.stock = stock;
 	}
 	
-	public Productos(String nombre, int precio, int stock) {
+	public Productos(String nombre, int precio_compra, int precio_venta, int stock) {
 		this.nombre=nombre;
-		this.precio=precio;
+		this.precio_compra=precio_compra;
+		this.precio_venta=precio_venta;
 		this.stock=stock;
 		
 	}
@@ -105,18 +107,23 @@ public class Productos {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getReferencia() {
-		return referencia;
+	
+	public int getPrecio_compra() {
+		return precio_compra;
 	}
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
+
+	public void setPrecio_compra(int precio_compra) {
+		this.precio_compra = precio_compra;
 	}
-	public int getPrecio() {
-		return precio;
+
+	public int getPrecio_venta() {
+		return precio_venta;
 	}
-	public void setPrecio(int precio) {
-		this.precio = precio;
+
+	public void setPrecio_venta(int precio_venta) {
+		this.precio_venta = precio_venta;
 	}
+
 	public int getPeso() {
 		return peso;
 	}
@@ -142,11 +149,11 @@ public class Productos {
 		this.fechaCreacion = fechaCreacion;
 	}
 	
-	public Set<ProductosVentas> getProductosventas() {
+	public List<ProductosVentas> getProductosventas() {
 		return productosventas;
 	}
 
-	public void setProductos(Set<ProductosVentas> productosventas) {
+	public void setProductos(List<ProductosVentas> productosventas) {
 		this.productosventas = productosventas;
 	}
 

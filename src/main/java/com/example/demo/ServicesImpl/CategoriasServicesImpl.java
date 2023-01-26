@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Modelo.Categorias;
+import com.example.demo.Modelo.Ventas;
 import com.example.demo.Repository.CategoriasRepository;
 import com.example.demo.Services.CategoriasServices;
 
@@ -29,9 +30,14 @@ public class CategoriasServicesImpl implements CategoriasServices {
 	}
 
 	@Override
-	public Categorias save(Categorias id) {
+	public int save(Categorias id) {
 		// TODO Auto-generated method stub
-		return categoriasRepository.save(id);
+		int res=0;
+		Categorias categoria= categoriasRepository.save(id);
+		if(categoria.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 
 	@Override

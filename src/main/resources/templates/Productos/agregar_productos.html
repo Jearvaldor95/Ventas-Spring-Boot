@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Crud Spring Boot</title>
@@ -14,7 +14,7 @@
 	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
 			</div>
-		<div class="col-sm-12">
+		<div class="col-sm-8">
 			<form th:action="@{/producto/guardar}" th:object=${productos} method="POST">
 				<div class="card">
 					<div class="card-head">
@@ -25,36 +25,42 @@
 							<input th:field="*{id}" type="hidden" class="form-control">
 						</div>
 						<div class="form-group">
-							<label>NOMBRE</label> 
-							<input th:field="*{nombre}" type="text" class="form-control">
+							<label>Nombre</label> 
+							<input th:field="*{nombre}" type="text" id="nombre" required class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{nombre}"></div>
 						</div>
 						<div class="form-group">
-							<label>Referencia</label> 
-							<input th:field="*{referencia}" type="text" class="form-control">
+							<label>Precio compra</label> 
+							<input th:field="*{precio_compra}" type="text" id="precio_compra" required class="form-control" th:classappend="${#fields.hasErrors('precio_compra')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{precio_compra}"></div>
 						</div>
 						<div class="form-group">
-							<label>PRECIO</label> 
-							<input th:field="*{precio}" type="text" class="form-control">
+							<label>Precio venta</label> 
+							<input th:field="*{precio_venta}" type="text" id="precio_venta" required class="form-control" th:classappend="${#fields.hasErrors('precio_venta')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{precio_venta}"></div>
 						</div>
 						<div class="form-group">
-							<label>PESO</label> 
-							<input th:field="*{peso}" type="text" class="form-control">
+							<label>Peso</label> 
+							<input th:field="*{peso}" type="text" id="peso" required class="form-control" th:classappend="${#fields.hasErrors('peso')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{peso}"></div>
 						</div>
 						<div class="form-group">
-							<label>CATEGORIA</label> 
-							<select th:field="*{categoria}" class="form-control">
+							<label>Categoria</label> 
+							<select th:field="*{categoria}" class="form-control" required>
 							<option value="0">Seleccionar categoria</option>
 							<option th:each="categoria:${categoria}" th:text="${categoria.nombre}" th:value="${categoria.id}" ></option>
 							</select>
-							
+							<div class="invalid-feedback" th:errors="*{categoria}"></div>
 						</div>
 						<div class="form-group">
-							<label>STOCK</label> 
-							<input th:field="*{stock}" type="text" class="form-control">
+							<label>Stock</label> 
+							<input th:field="*{stock}" type="text" id="stock" required class="form-control" th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{stock}"></div>
 						</div>
 						<div class="form-group">
-							<label>FECHA CREACION</label> 
-							<input th:field="*{fechaCreacion}" type="date" class="form-control">
+							<label>Fecha creación</label> 
+							<input th:field="*{fechaCreacion}" type="date" id="fechaCreacion" required class="form-control" th:classappend="${#fields.hasErrors('fechaCreacion')} ? 'is-invalid' : ''">
+							<div class="invalid-feedback" th:errors="*{fechaCreacion}"></div>
 						</div>
 					</div>
 					<div class="card-footer">

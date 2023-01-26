@@ -2,9 +2,12 @@ package com.example.demo.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +33,7 @@ public class ProductosController {
 	public String ListarProducto(Model model) {
 		List<Productos>productos=productoServices.listar();
 		model.addAttribute("productos", productos);
-		return "index";
+		return "Productos/ver_productos";
 	}
 	
 	@GetMapping("/nuevo")
@@ -42,7 +45,10 @@ public class ProductosController {
 		return "Productos/agregar_productos";
 	}
 	@PostMapping("/guardar")
-	public String GuardarProducto(@Validated Productos p, Model model, RedirectAttributes redirectAtrrs) {
+	public String GuardarProducto(@Valid Productos p, Model model, RedirectAttributes redirectAtrrs,BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+            return "Productos/agregar_productos";
+        }
 		productoServices.save(p);
 		redirectAtrrs
 		.addFlashAttribute("mensaje", "Producto guardado corectamente")

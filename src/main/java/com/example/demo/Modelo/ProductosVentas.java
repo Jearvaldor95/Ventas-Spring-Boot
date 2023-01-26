@@ -2,32 +2,34 @@ package com.example.demo.Modelo;
 
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "productos_ventas")
 public class ProductosVentas {
-	
+	@Id
+	@Column(name="id_pv")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private  int id;
 	private int precio;
 	private int cantidad;
 	private int total;
-	
+	/*@EmbeddedId
+	private ProductosVentasPK ID;*/
 	
     @ManyToOne
     @JoinColumn(name = "idventa",nullable= false,insertable=true, updatable=true)
     private Ventas venta;
     
     @ManyToOne
-    @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=false)
+    @JoinColumn(name = "idproducto", nullable= false,insertable=true, updatable=true)
     private Productos productos;
     
 	public ProductosVentas(int precio, int cantidad,int total,Productos productos,Ventas venta) {
@@ -41,10 +43,15 @@ public class ProductosVentas {
 	
 	
 	 public ProductosVentas() {
-		
+		super();
 	}
 	 
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id=id;
+	}
 
 	public int getTotal() {
 	        return this.cantidad * this.precio;

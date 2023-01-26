@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Prueba Crud Spring Boot</title>
@@ -13,7 +13,7 @@
 <body>
 	<nav th:replace="Navegacion/navegacion :: navegacion"></nav>
 	<main>
-		<div class="col-12">
+		<div class="container mt-4 table-striped">
 			<h2>Vender</h2>
 			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
@@ -23,27 +23,27 @@
 				<div class="form-group">
 					<label for="codigo">ID del producto</label> <input autofocus
 						autocomplete="off" th:field="*{id}" id="codigo"
-						placeholder="Escribe el ID del producto y presiona Enter"
+						placeholder="Escribe el ID del producto presiona Enter o con el boton buscar producto"
 						type="number" class="form-control"
-						th:classappend="${#fields.hasErrors('id')} ? 'is-invalid' : ''"onfocus="PasarValorVenta();" >
+						th:classappend="${#fields.hasErrors('id')} ? 'is-invalid' : ''"
+						onfocus="PasarValorVenta();">
 					<div class="invalid-feedback" th:errors="*{id}"></div>
 
 				</div>
-				<script>
-					function PasarValorVenta(){
-						document.getElementById("obtenerTotalVenta").value=document.getElementById("pasarTotalVenta").value;
-					}
-				</script>
-
+				<div class="form-group">
+					<input type="submit" value="Buscar Producto" class="btn btn-primary">
+				</div>
 			</form>
-			<form class="mb-2" th:object="${ventas}"
-				th:action="@{/vender/terminar}" method="post">
+			<script>
+				function PasarValorVenta() {
+					document.getElementById("obtenerTotalVenta").value = document.getElementById("pasarTotalVenta").value;
+				}
+			</script>
+			<form class="mb-2" th:object="${ventas}" th:action="@{/vender/terminar}" method="post">
 				<input th:field="*{fechaYHora}" type="datetime"> 
 				<input th:field="*{TotalVenta}" id="obtenerTotalVenta" type="hidden">
 				<input id="pasarTotalVenta" th:value="${total}" type="hidden">
-				<button type="submit" class="btn btn-success">
-					Terminar&nbsp;<i class="fa fa-check"></i>
-				</button>
+				<button type="submit" class="btn btn-success">Terminar venta&nbsp;<i class="fa fa-check"></i></button>
 				<a th:href="@{/vender/limpiar}" class="btn btn-danger">Cancelar
 					venta&nbsp;<i class="fa fa-trash"></i>
 				</a>
@@ -65,7 +65,7 @@
 						<tr th:each="producto, iterador : ${session.carrito}">
 							<td th:text="${producto.id}"></td>
 							<td th:text="${producto.nombre}"></td>
-							<td th:text="${producto.precio}"></td>
+							<td th:text="${producto.precio_venta}"></td>
 							<td th:text="${producto.cantidad}"></td>
 							<td th:text="${producto.total}"></td>
 							<td>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Prueba Crud Spring Boot</title>
@@ -12,7 +12,7 @@
 <body>
 <nav th:replace="Navegacion/navegacion :: navegacion"></nav>
 <main>
-    <div class="col-12">
+    <div class="container mt-4 table-striped">
         <h2>Ventas</h2>
         <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
              th:text="${mensaje}"
